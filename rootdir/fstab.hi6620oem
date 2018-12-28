@@ -1,0 +1,18 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+#TODO: Add 'check' as fs_mgr_flags with data partition.
+# Currently we dont have e2fsck compiled. So fs check would failed.
+
+#<src>						<mnt_point>	<type>		<mnt_flags and options>									<fs_mgr_flags>
+/dev/block/platform/hi_mci.0/by-name/system	/system		ext4		ro,barrier=1										wait
+/dev/block/platform/hi_mci.0/by-name/cache	/cache		ext4		noatime,nosuid,nodev,barrier=1,data=ordered,nomblk_io_submit,noauto_da_alloc		wait,check
+/dev/block/platform/hi_mci.0/by-name/userdata	/data		ext4		noatime,nosuid,nodev,barrier=1,data=ordered,nomblk_io_submit,noauto_da_alloc		wait,check,encryptable=footer,length=-16384
+/dev/block/platform/hi_mci.0/by-name/userdata	/data		f2fs		rw,noatime,nosuid,nodev,inline_xattr							wait,check,encryptable=footer,length=-16384
+/dev/block/platform/hi_mci.0/by-name/boot	/boot		emmc		defaults										defaults
+/dev/block/platform/hi_mci.0/by-name/recovery	/recovery	emmc		defaults										defaults
+/dev/block/platform/hi_mci.0/by-name/misc	/misc		emmc		defaults										defaults
+
+/devices/platform/hi_mci.1/mmc_host/mmc1/*	auto		auto		defaults										voldmanaged=sdcard1:auto,noemulatedsd,encryptable=userdata
+/devices/hisik3-usb-otg/usb*			auto		auto		defaults										voldmanaged=usb:auto

@@ -1,0 +1,19 @@
+#
+# system.prop for hi6620oem
+#
+rild.libpath=/system/lib/libbalong-ril.so
+rild.libargs=-m modem0
+rild.libpath1=/system/lib/libbalong-ril.so
+rild.libargs1=-m modem1
+ro.config.hisi_soc_type=true
+ro.config.hisi_rpt_mode=0
+#ro.sf.lcd_density=440
+balong.debug.on=false
+ro.config.fm_type=libbcmfm_if
+ro.bt.bdaddr_path=/data/misc/bluedroid/macbt
+drm.service.enabled=false
+ro.ril.ecclist=112,911,#911,*911
+af.resampler.quality=4
+logd.klogd=false
+ro.sdcardfs.enable=true
+ro.disp.resolution_switch=true
